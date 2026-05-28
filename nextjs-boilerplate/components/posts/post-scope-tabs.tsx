@@ -14,7 +14,7 @@ const tabs = [
 
 export function PostScopeTabs({ scope }: PostScopeTabsProps) {
   return (
-    <div className="flex gap-2">
+    <div className="inline-flex gap-2 p-1 rounded-full bg-surface">
       {tabs.map((tab) => {
         const isActive = tab.value === scope
 
@@ -23,10 +23,10 @@ export function PostScopeTabs({ scope }: PostScopeTabsProps) {
             key={tab.value}
             href={tab.href}
             className={cn(
-              "rounded-md border px-3 py-2 text-sm transition",
+              "rounded-full px-4 py-1.5 text-body-sm-medium transition-all",
               isActive
-                ? "border-foreground bg-foreground text-background"
-                : "border-border text-muted-foreground hover:text-foreground",
+                ? "bg-ink text-on-dark"
+                : "text-steel hover:text-ink",
             )}
           >
             {tab.label}

@@ -7,9 +7,47 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-euclid);
+  --font-mono: var(--font-source-code);
+  --font-heading: var(--font-euclid);
+  
+  /* MongoDB Brand Colors */
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-dark: var(--brand-green-dark);
+  --color-brand-green-mid: var(--brand-green-mid);
+  --color-brand-green-soft: var(--brand-green-soft);
+  --color-brand-teal-deep: var(--brand-teal-deep);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-mid: var(--brand-teal-mid);
+  
+  /* Category Accents */
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-blue: var(--accent-blue);
+  
+  /* Surface Colors */
+  --color-canvas: var(--canvas);
+  --color-canvas-dark: var(--canvas-dark);
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-feature: var(--surface-feature);
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-hairline-dark: var(--hairline-dark);
+  
+  /* Text Colors */
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-slate: var(--slate);
+  --color-steel: var(--steel);
+  --color-stone: var(--stone);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-muted: var(--on-dark-muted);
+  --color-on-primary: var(--on-primary);
+  
+  /* Shadcn Compatibility */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -39,82 +77,122 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  
+  /* Border Radius - MongoDB Style */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* MongoDB Brand Colors */
+  --brand-green: #00ED64;
+  --brand-green-dark: #00684A;
+  --brand-green-mid: #00A35C;
+  --brand-green-soft: #E3FCF1;
+  --brand-teal-deep: #001E2B;
+  --brand-teal: #023430;
+  --brand-teal-mid: #0D4D45;
+  
+  /* Category Accents */
+  --accent-purple: #8B5CF6;
+  --accent-orange: #F97316;
+  --accent-pink: #EC4899;
+  --accent-blue: #3B82F6;
+  
+  /* Surface Colors */
+  --canvas: #FFFFFF;
+  --canvas-dark: #001E2B;
+  --surface: #F9FAFB;
+  --surface-soft: #F3F4F6;
+  --surface-feature: #E3FCF1;
+  --hairline: #E5E7EB;
+  --hairline-soft: #F3F4F6;
+  --hairline-strong: #D1D5DB;
+  --hairline-dark: rgba(255, 255, 255, 0.2);
+  
+  /* Text Colors */
+  --ink: #001E2B;
+  --charcoal: #1F2937;
+  --slate: #4B5563;
+  --steel: #6B7280;
+  --stone: #9CA3AF;
+  --muted-text: #D1D5DB;
+  --on-dark: #FFFFFF;
+  --on-dark-muted: rgba(255, 255, 255, 0.7);
+  --on-primary: #001E2B;
+  
+  /* Shadcn Compatibility Variables */
+  --background: #FFFFFF;
+  --foreground: #001E2B;
+  --card: #FFFFFF;
+  --card-foreground: #001E2B;
+  --popover: #FFFFFF;
+  --popover-foreground: #001E2B;
+  --primary: #00ED64;
+  --primary-foreground: #001E2B;
+  --secondary: #F9FAFB;
+  --secondary-foreground: #001E2B;
+  --muted: #F9FAFB;
+  --muted-foreground: #6B7280;
+  --accent: #E3FCF1;
+  --accent-foreground: #00684A;
+  --destructive: #EF4444;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #00ED64;
+  --chart-1: #00ED64;
+  --chart-2: #00A35C;
+  --chart-3: #00684A;
+  --chart-4: #023430;
+  --chart-5: #001E2B;
+  --radius: 12px;
+  --sidebar: #F9FAFB;
+  --sidebar-foreground: #001E2B;
+  --sidebar-primary: #00ED64;
+  --sidebar-primary-foreground: #001E2B;
+  --sidebar-accent: #E3FCF1;
+  --sidebar-accent-foreground: #00684A;
+  --sidebar-border: #E5E7EB;
+  --sidebar-ring: #00ED64;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #001E2B;
+  --foreground: #FFFFFF;
+  --card: #023430;
+  --card-foreground: #FFFFFF;
+  --popover: #023430;
+  --popover-foreground: #FFFFFF;
+  --primary: #00ED64;
+  --primary-foreground: #001E2B;
+  --secondary: #0D4D45;
+  --secondary-foreground: #FFFFFF;
+  --muted: #0D4D45;
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: #0D4D45;
+  --accent-foreground: #00ED64;
+  --destructive: #EF4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #00ED64;
+  --chart-1: #00ED64;
+  --chart-2: #00A35C;
+  --chart-3: #E3FCF1;
+  --chart-4: #FFFFFF;
+  --chart-5: rgba(255, 255, 255, 0.7);
+  --sidebar: #023430;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #00ED64;
+  --sidebar-primary-foreground: #001E2B;
+  --sidebar-accent: #0D4D45;
+  --sidebar-accent-foreground: #00ED64;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #00ED64;
 }
 
 @layer base {
@@ -125,6 +203,173 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    @apply font-sans antialiased;
+  }
+}
+
+/* MongoDB Typography Utilities */
+@layer utilities {
+  .text-hero-display {
+    font-size: 72px;
+    font-weight: 500;
+    line-height: 1.10;
+    letter-spacing: -1.5px;
+  }
+  
+  .text-display-lg {
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+  
+  .text-heading-1 {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.20;
+    letter-spacing: -0.5px;
+  }
+  
+  .text-heading-2 {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+  }
+  
+  .text-heading-3 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.30;
+  }
+  
+  .text-heading-4 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  
+  .text-heading-5 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.40;
+  }
+  
+  .text-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.50;
+  }
+  
+  .text-body-md {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+  
+  .text-body-sm {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.50;
+  }
+  
+  .text-body-sm-medium {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.50;
+  }
+  
+  .text-caption-bold {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.40;
+  }
+  
+  .text-micro-uppercase {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.40;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  .text-button-md {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.30;
+  }
+  
+  .text-code-md {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.55;
+    font-family: var(--font-mono);
+  }
+}
+
+/* MongoDB Shadow Utilities */
+@layer utilities {
+  .shadow-subtle {
+    box-shadow: rgba(0, 30, 43, 0.04) 0px 1px 2px 0px;
+  }
+  
+  .shadow-card {
+    box-shadow: rgba(0, 30, 43, 0.08) 0px 4px 12px 0px;
+  }
+  
+  .shadow-mockup {
+    box-shadow: rgba(0, 30, 43, 0.12) 0px 12px 24px -4px;
+  }
+  
+  .shadow-modal {
+    box-shadow: rgba(0, 30, 43, 0.16) 0px 16px 48px -8px;
+  }
+}
+
+/* Responsive Typography */
+@media (max-width: 1279px) {
+  .text-hero-display {
+    font-size: 64px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .text-hero-display {
+    font-size: 56px;
+  }
+  .text-display-lg {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .text-hero-display {
+    font-size: 48px;
+    letter-spacing: -1px;
+  }
+  .text-display-lg {
+    font-size: 40px;
+  }
+  .text-heading-1 {
+    font-size: 36px;
+  }
+  .text-heading-2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 479px) {
+  .text-hero-display {
+    font-size: 36px;
+    letter-spacing: -0.5px;
+  }
+  .text-display-lg {
+    font-size: 32px;
+  }
+  .text-heading-1 {
+    font-size: 28px;
+  }
+  .text-heading-2 {
+    font-size: 24px;
   }
 }
