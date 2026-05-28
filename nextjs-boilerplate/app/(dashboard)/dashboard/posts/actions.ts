@@ -47,6 +47,8 @@ export async function createPost(
   _prevState: string | null,
   formData: FormData,
 ) {
+  let postId: string
+
   try {
     const user = await requireSessionUser()
     const title = validatePostTitle(String(formData.get("title") ?? ""))
@@ -64,10 +66,12 @@ export async function createPost(
     })
 
     revalidatePath("/dashboard")
-    redirect(`/posts/${post.id}`)
+    postId = post.id
   } catch (error) {
     return getPostActionErrorMessage(error) ?? CREATE_POST_ERROR
   }
+
+  redirect(`/posts/${postId}`)
 }
 
 export async function updatePost(
@@ -100,10 +104,11 @@ export async function updatePost(
 
     revalidatePath("/dashboard")
     revalidatePath(`/posts/${postId}`)
-    redirect(`/posts/${postId}`)
   } catch (error) {
     return getPostActionErrorMessage(error) ?? UPDATE_POST_ERROR
   }
+
+  redirect(`/posts/${postId}`)
 }
 
 export async function deletePost(postId: string) {
