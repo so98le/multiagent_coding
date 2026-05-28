@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 const findUnique = vi.fn()
 
 vi.mock('react', () => ({
-  cache: <T extends (...args: any[]) => any>(fn: T) => fn,
+  cache: <T extends (...args: unknown[]) => unknown>(fn: T) => fn,
 }))
 
 vi.mock('@/lib/db', () => ({
