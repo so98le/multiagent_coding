@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
 
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient }
+
 function createPrismaClient() {
   const connectionString = process.env.DATABASE_URL
   if (!connectionString) throw new Error("DATABASE_URL environment variable is not set")
@@ -8,8 +10,14 @@ function createPrismaClient() {
   return new PrismaClient({ adapter })
 }
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
+export function getDb() {
+  if (globalForPrisma.prisma) return globalForPrisma.prisma
 
-export const db = globalForPrisma.prisma ?? createPrismaClient()
+  const prisma = createPrismaClient()
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db
+  if (process.env.NODE_ENV !== "production") {
+    globalForPrisma.prisma = prisma
+  }
+
+  return prisma
+}
