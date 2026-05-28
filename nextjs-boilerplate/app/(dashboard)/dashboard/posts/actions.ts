@@ -9,13 +9,13 @@ import {
   canEditPost,
   EMPTY_POST_CONTENT_ERROR,
   EMPTY_POST_TITLE_ERROR,
-  getEditablePost,
   POST_NOT_FOUND_ERROR,
   UNAUTHORIZED_POST_DELETE_ERROR,
   UNAUTHORIZED_POST_EDIT_ERROR,
   validatePostContent,
   validatePostTitle,
-} from "@/lib/posts"
+} from "@/lib/post-management"
+import { getEditablePost } from "@/lib/posts"
 import { MissingSessionUserError, requireSessionUser } from "@/lib/session"
 
 const CREATE_POST_ERROR = "Unable to create post."

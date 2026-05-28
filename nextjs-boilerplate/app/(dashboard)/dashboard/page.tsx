@@ -4,7 +4,8 @@ import { PostList } from "@/components/posts/post-list"
 import { PostScopeTabs } from "@/components/posts/post-scope-tabs"
 import { buttonVariants } from "@/components/ui/button"
 import { auth } from "@/lib/auth"
-import { getDashboardPosts, normalizePostScope } from "@/lib/posts"
+import { normalizePostScope } from "@/lib/post-management"
+import { getDashboardPosts } from "@/lib/posts"
 import { cn } from "@/lib/utils"
 
 type DashboardPageProps = {

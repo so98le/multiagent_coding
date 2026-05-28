@@ -3,7 +3,8 @@ import { notFound, redirect } from "next/navigation"
 import { updatePost } from "@/app/(dashboard)/dashboard/posts/actions"
 import { PostEditorForm } from "@/components/posts/post-editor-form"
 import { auth } from "@/lib/auth"
-import { canEditPost, getEditablePost } from "@/lib/posts"
+import { canEditPost } from "@/lib/post-management"
+import { getEditablePost } from "@/lib/posts"
 
 type EditPostPageProps = {
   params: Promise<{

@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import type { PostScope } from "@/lib/posts"
+import type { PostScope } from "@/lib/post-management"
 import { cn } from "@/lib/utils"
 
 type PostScopeTabsProps = {

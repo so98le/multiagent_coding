@@ -5,7 +5,7 @@ import { useActionState } from "react"
 import type { UserRole } from "@prisma/client"
 
 import { deletePost } from "@/app/(dashboard)/dashboard/posts/actions"
-import { canDeletePost, canEditPost } from "@/lib/posts"
+import { canDeletePost, canEditPost } from "@/lib/post-management"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
