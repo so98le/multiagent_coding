@@ -4,6 +4,7 @@ import { useActionState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 
 type PostEditorFormProps = {
   action: (state: string | null, formData: FormData) => Promise<string | null>
@@ -28,26 +29,26 @@ export function PostEditorForm({
   )
 
   return (
-    <Card>
+    <Card variant="feature">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="text-heading-3">{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <form action={formAction} className="space-y-4">
+        <form action={formAction} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium" htmlFor="title">
+            <label className="text-body-sm-medium text-ink" htmlFor="title">
               Title
             </label>
-            <input
+            <Input
               id="title"
               name="title"
               defaultValue={initialTitle}
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              placeholder="Enter post title..."
               required
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium" htmlFor="content">
+            <label className="text-body-sm-medium text-ink" htmlFor="content">
               Content
             </label>
             <textarea
@@ -55,14 +56,18 @@ export function PostEditorForm({
               name="content"
               defaultValue={initialContent}
               rows={10}
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              placeholder="Write your post content..."
+              className="w-full h-auto min-h-[200px] rounded-md bg-canvas border border-hairline-strong px-4 py-3 text-body-md text-ink placeholder:text-steel transition-colors focus:border-brand-green-dark focus:ring-2 focus:ring-brand-green-dark/20 focus:outline-none"
               required
             />
           </div>
           {errorMessage ? (
-            <p className="text-sm text-destructive">{errorMessage}</p>
+            <p className="text-body-sm text-destructive">{errorMessage}</p>
           ) : null}
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-3">
+            <Button type="button" variant="secondary">
+              Cancel
+            </Button>
             <Button type="submit" disabled={isPending}>
               {isPending ? "Saving..." : submitLabel}
             </Button>

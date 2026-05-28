@@ -108,7 +108,7 @@ export function CommentList({
           })
 
         return (
-          <Card key={comment.id} size="sm">
+          <Card key={comment.id}>
             <CardHeader>
               <CardTitle>{getCommentAuthorLabel(comment)}</CardTitle>
               <CardDescription>
