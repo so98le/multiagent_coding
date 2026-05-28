@@ -14,7 +14,18 @@ vi.mock('@/lib/db', () => ({
   }),
 }))
 
-import { getPostDetail, shapeVisibleComments } from '@/lib/posts'
+import {
+  canDeletePost,
+  canEditPost,
+  EMPTY_POST_CONTENT_ERROR,
+  EMPTY_POST_TITLE_ERROR,
+  getPostDetail,
+  normalizePostScope,
+  shapeVisibleComments,
+  sortPostsNewestFirst,
+  validatePostContent,
+  validatePostTitle,
+} from '@/lib/posts'
 
 describe('shapeVisibleComments', () => {
   it('removes soft-deleted comments and sorts visible comments oldest first', () => {
@@ -44,6 +55,87 @@ describe('shapeVisibleComments', () => {
       visibleOldest,
       visibleNewest,
     ])
+  })
+})
+
+describe('normalizePostScope', () => {
+  it('falls back to all for missing or invalid scope values', () => {
+    expect(normalizePostScope(undefined)).toBe('all')
+    expect(normalizePostScope(null)).toBe('all')
+    expect(normalizePostScope('ALL')).toBe('all')
+    expect(normalizePostScope('mine ')).toBe('all')
+    expect(normalizePostScope('something-else')).toBe('all')
+  })
+
+  it('returns mine only for the exact valid scope value', () => {
+    expect(normalizePostScope('mine')).toBe('mine')
+  })
+})
+
+describe('sortPostsNewestFirst', () => {
+  it('sorts posts by createdAt descending', () => {
+    const oldest = { id: 'post-1', createdAt: new Date('2026-05-01T00:00:00.000Z') }
+    const middle = { id: 'post-2', createdAt: new Date('2026-05-02T00:00:00.000Z') }
+    const newest = { id: 'post-3', createdAt: new Date('2026-05-03T00:00:00.000Z') }
+
+    expect(sortPostsNewestFirst([middle, oldest, newest])).toEqual([newest, middle, oldest])
+  })
+})
+
+describe('post validation', () => {
+  it('rejects an empty title after trimming', () => {
+    expect(() => validatePostTitle('   ')).toThrowError(EMPTY_POST_TITLE_ERROR)
+  })
+
+  it('rejects an empty body after trimming', () => {
+    expect(() => validatePostContent('\n\t  ')).toThrowError(EMPTY_POST_CONTENT_ERROR)
+  })
+
+  it('returns trimmed title and content for valid inputs', () => {
+    expect(validatePostTitle('  Title  ')).toBe('Title')
+    expect(validatePostContent('  Body  ')).toBe('Body')
+  })
+})
+
+describe('canEditPost', () => {
+  it('allows authors to edit their own posts', () => {
+    expect(canEditPost({ actorId: 'author-1', postAuthorId: 'author-1' })).toBe(true)
+  })
+
+  it('denies post edits for non-authors', () => {
+    expect(canEditPost({ actorId: 'user-2', postAuthorId: 'author-1' })).toBe(false)
+  })
+})
+
+describe('canDeletePost', () => {
+  it('allows authors to delete their own posts', () => {
+    expect(
+      canDeletePost({
+        actorId: 'author-1',
+        actorRole: 'USER',
+        postAuthorId: 'author-1',
+      }),
+    ).toBe(true)
+  })
+
+  it('allows admins to delete any post', () => {
+    expect(
+      canDeletePost({
+        actorId: 'admin-1',
+        actorRole: 'ADMIN',
+        postAuthorId: 'author-1',
+      }),
+    ).toBe(true)
+  })
+
+  it('denies deletes for unrelated non-admin users', () => {
+    expect(
+      canDeletePost({
+        actorId: 'user-2',
+        actorRole: 'USER',
+        postAuthorId: 'author-1',
+      }),
+    ).toBe(false)
   })
 })
 
