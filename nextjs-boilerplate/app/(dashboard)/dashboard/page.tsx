@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation"
 import Link from "next/link"
 
 import { PostList } from "@/components/posts/post-list"
@@ -17,9 +18,14 @@ export default async function DashboardPage({
   searchParams,
 }: DashboardPageProps) {
   const session = await auth()
+  
+  if (!session?.user?.id) {
+    redirect("/login")
+  }
+  
   const resolvedSearchParams = searchParams ? await searchParams : undefined
   const scope = normalizePostScope(resolvedSearchParams?.scope)
-  const posts = await getDashboardPosts(scope, session!.user.id)
+  const posts = await getDashboardPosts(scope, session.user.id)
 
   return (
     <main className="min-h-screen bg-canvas">
@@ -62,8 +68,8 @@ export default async function DashboardPage({
         {/* Post List */}
         <PostList
           posts={posts}
-          viewerUserId={session!.user.id}
-          viewerRole={session!.user.role}
+          viewerUserId={session.user.id}
+          viewerRole={session.user.role}
         />
       </div>
     </main>
